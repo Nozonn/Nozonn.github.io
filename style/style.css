@@ -6,6 +6,18 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+header
+{   
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    height: 100px;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
 
 h1 {
     text-decoration: underline;
@@ -19,7 +31,7 @@ li
 }
 
 
-.verbs1, .verbs2
+#verbs
 {
     width: 600px;
     height: auto;
@@ -35,4 +47,10 @@ li
     padding-top: 5px;
 
     border-radius: 20px;
+}
+
+
+.list
+{
+    display: none;
 }

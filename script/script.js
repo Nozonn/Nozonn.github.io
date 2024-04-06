@@ -22,39 +22,7 @@ const verbs1 = {
 };
 
 
-
-let verbsFr1 = [];
-for (let key in verbs1) {
-    verbsFr1.push(key);
-}
-
-const size = verbsFr1.length;
-
-
-const divVerbs1 = document.querySelector(".verbs1");
-
-let subtitle1 = document.createElement("h1");
-subtitle1.innerHTML = "List 1";
-divVerbs1.appendChild(subtitle1);
-
-for (let verbFr in verbsFr1) {
-    let frenchVb1 = verbsFr1
-[verbFr];
-    let verbesIrr1 = frenchVb1 + " : " + verbs1[frenchVb1][0] + ", ";
-    verbesIrr1 = verbesIrr1 + verbs1[frenchVb1][1] + ", " + verbs1[frenchVb1][2];
-    
-    let listVbFr1 = document.createElement("li");
-    listVbFr1.innerHTML = verbesIrr1;
-    divVerbs1.appendChild(listVbFr1);
-}
-
-
-const clickList1 = () => alert("You cliked the LIST 1!");
-divVerbs1.addEventListener("click", clickList1);
-
-
 // ========================== LIST 2 ================================
-
 
 const verbs2 = {
     "attraper" : ["to catch", "caught", "caught"],
@@ -83,27 +51,81 @@ const verbs2 = {
 };
 
 
-let verbsFr2 = [];
-for (let key in verbs2) {
-    verbsFr2.push(key);
+// ========================== LIST 3 ================================
+
+const verbs3 = {
+    "obtenir" : ["to get", "got", "got"],
+    "donner" : ["to give", "gave", "given"],
+    "aller" : ["to go", "went", "gone"],
+    "cultiver, pousser, grandir" : ["to grow", "grew", "grown"],
+    "avoir" : ["to have", "had ", "had "],
+    "entendre" : ["to hear", "heard ", "heard "],
+    "cacher" : ["to hide", "hid ", "hidden "],
+    "frapper" : ["to hit", "hit ", "hit "],
+    "tenir" : ["to hold", "held", "held "],
+    "faire mal" : ["to hurt", "hurt ", "hurt "],
+    "garder" : ["to keep", "kept ", "kept "],
+    "s'agenouiller" : ["to kneel", "knelt ", "knelt "],
+    "tricoter (2 forms)" : ["to knit", "knit ", "knit "],
+    "connaître, savoir" : ["to know", "knew ", "known "],
+    "étendre" : ["to lay", "laid ", "laid "],
+    "conduire, mener" : ["to lead", "led ", "led "],
+    "sauter (2 forms)" : ["to leap", "leapt ", "leapt "],
+    "apprendre (2 forms)" : ["to learn", "learnt ", "learnt "],
+    "quitter, laisser" : ["to leave", "left ", "left "],
+    "prêter" : ["to lend", "lent ", "lent "],
+    "laisser" : ["to let", "let ", "let "],
+    "être étendu" : ["to lie", "lay ", "lain "],
+    "allumer (2 forms)" : ["to light", "lit ", "lit "],
+    "perdre" : ["to lose", "lost ", "lost "],
+};
+
+// ==================================================================
+
+
+
+// ========================== MENU ==================================
+
+// méthod trim() to delete the blank space begin and after the word
+
+function showWords(verbs, classDiv, titleTxt, id) {
+
+    let verbsFr = [];
+    for (key in verbs) {verbsFr.push(key.trim())};
+
+
+    let div = document.querySelector(classDiv);
+    let title = document.createElement("h1");
+    title.innerHTML = titleTxt;
+    div.appendChild(title);
+
+    for (let verbFr in verbsFr) {
+        let vbFr = verbsFr[verbFr];
+        
+        let inf = verbs[vbFr][0];
+        let preterit = verbs[vbFr][1];
+        let pastPart = verbs[vbFr][2];
+
+        let formsVb = vbFr+" : "+inf+", "+preterit+", "+pastPart;
+
+        let liVb = document.createElement("li");
+        liVb.innerHTML = formsVb;
+        div.appendChild(liVb);
+    }
+
+    div.addEventListener("click", 
+        () => {
+            SelecList(id)
+        });
 }
 
-const divVerbs2 = document.querySelector(".verbs2");
-
-let subtitle2 = document.createElement("h1");
-subtitle2.innerHTML = "List 2";
-divVerbs2.appendChild(subtitle2);
-
-for (let verbFr in verbsFr2) {
-    let frenchVb2 = verbsFr2[verbFr];
-    let verbesIrr2 = frenchVb2 + " : " + verbs2[frenchVb2][0] + ", ";
-    verbesIrr2 = verbesIrr2 + verbs2[frenchVb2][1] + ", " + verbs2[frenchVb2][2];
-    
-    let listVbFr2 = document.createElement("li");
-    listVbFr2.innerHTML = verbesIrr2;
-    divVerbs2.appendChild(listVbFr2);
+function SelecList(selecList) {
+    document.querySelector(".Menu").setAttribute("style", "display:none");
+    document.querySelector(selecList).setAttribute("style", "display:block");
 }
 
+showWords(verbs1, ".verbs1", "List 1", "#list1")
+showWords(verbs2, ".verbs2", "List 2", "#list2")
+showWords(verbs3, ".verbs3", "List 3", "#list3")
 
-const clickList2 = () => alert("You cliked the LIST 2!");
-divVerbs2.addEventListener("click", clickList2);
+// ==================================================================
