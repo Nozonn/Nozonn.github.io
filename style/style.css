@@ -139,6 +139,7 @@ label:not(.ColumnVbIrr)
     header {
         font-size: 15px;
         height: auto;
+        width: auto;
     }
 
     #verbs {
@@ -151,10 +152,6 @@ label:not(.ColumnVbIrr)
     }
 
     .answer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         font-size: 15px;
         width: auto;
     }
