@@ -81,8 +81,11 @@ function validateEntry(verbs, entryUserVerb, idLabelVbFr, idLabelColumnVbIrr) {
 }
 
 function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
+    entryValue = entryValue.toLowerCase()
+    alert(entryValue)
+
     if (form == "Infinitif") {
-        if (verbs[choice][0].trim() == entryValue.toLowerCase()) {
+        if (verbs[choice][0].trim() == entryValue) {
             form = columnVbIrr[1]
             let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
             labelColumnVbIrr.innerHTML = form;
@@ -94,7 +97,7 @@ function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
             labelColumnVbIrr.innerHTML = form;
         }
     } else if (form == "Prétérit") {
-        if (verbs[choice][1].trim() == entryValue.toLowerCase()) {       
+        if (verbs[choice][1].trim() == entryValue) {       
             form = columnVbIrr[2]
             let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
             labelColumnVbIrr.innerHTML = form;
@@ -107,7 +110,7 @@ function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
         }
         
     } else {
-        if (verbs[choice][2].trim() == entryValue.toLowerCase()) {
+        if (verbs[choice][2].trim() == entryValue) {
             form = columnVbIrr[0]
             let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
             labelColumnVbIrr.innerHTML = form;
