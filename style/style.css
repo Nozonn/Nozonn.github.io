@@ -23,6 +23,7 @@ h1 {
     text-decoration: underline;
     text-align: center;
     margin-top: 20px;
+    text-transform: uppercase;
 }
 
 li 
@@ -54,3 +55,75 @@ li
 {
     display: none;
 }
+
+
+.answer
+{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+    
+    height: 500px;
+    width: 500px;
+    
+
+    background-color: var(--default-color);
+    border: 5px solid black;
+
+    font-size: 20px;  
+}
+
+
+.userVerb
+{
+    margin-top: 20px;
+    height: 40px;
+    font-size: 20px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+
+    border-radius: 30px;
+    border: 1px solid black;
+
+    background-color: transparent;
+}
+
+.userVerb:focus{
+    background-color: white;
+}
+
+.userVerb::placeholder {
+    color: rgba(0, 0, 0, 0.644);
+}
+
+
+
+label:not(.ColumnVbIrr)
+{
+    text-transform: capitalize;
+    text-decoration: underline;
+    margin-bottom: 60px;
+    font-size: 30px;
+}
+
+.submit
+{
+    background-color: black;
+    color: var(--default-color);
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+}
+
+.ColumnVbIrr
+{
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+

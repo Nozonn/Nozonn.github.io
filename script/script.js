@@ -1,5 +1,133 @@
-// ========================== LIST 1 ================================
+// ========================== MENU ==================================
 
+// méthod trim() to delete the blank space begin and after the word
+
+function showWords(verbs, classDiv, titleTxt, idListChosen, idLabelVbFr, idLabelColumnVbIrr, entryUserVerb, btnValidation) {
+    let verbsFr = [];
+    for (key in verbs) {verbsFr.push(key.trim())};
+
+    let div = document.querySelector(classDiv);
+    let title = document.createElement("h1");
+    title.innerHTML = titleTxt;
+    div.appendChild(title);
+
+    for (let verbFr in verbsFr) {
+        let vbFr = verbsFr[verbFr];
+        
+        let inf = verbs[vbFr][0];
+        let preterit = verbs[vbFr][1];
+        let pastPart = verbs[vbFr][2];
+
+        let formsVb = vbFr+" : "+inf+", "+preterit+", "+pastPart;
+
+        let liVb = document.createElement("li");
+        liVb.innerHTML = formsVb;
+        div.appendChild(liVb);
+    }
+
+    div.addEventListener("click", 
+        () => {    
+            showPage(idListChosen)
+            showItems(verbsFr, idLabelVbFr, idLabelColumnVbIrr);
+            events(verbs, entryUserVerb, btnValidation, idLabelVbFr, idLabelColumnVbIrr)
+        });
+}
+
+function  showPage(selecList) {
+    document.querySelector(".Menu").setAttribute("style", "display:none");
+    document.querySelector(selecList).setAttribute("style", "display:block");
+}
+
+function showItems(listVbFr, idLabelVbFr, idLabelColumnVbIrr) {
+    currentList = listVbFr;
+    form = columnVbIrr[0];
+
+    let idx = Math.floor(Math.random() * currentList.length);
+    choice = currentList[idx];
+
+    let labelVbFr = document.querySelector(idLabelVbFr);
+    labelVbFr.innerHTML = choice;
+    
+    let labelColumn = document.querySelector(idLabelColumnVbIrr);
+    labelColumn.innerHTML = form;
+}
+
+function events(verbs, entryUserVerb, btnValidation, idLabelVbFr, idLabelColumnVbIrr) {
+    // Events
+    let userVerb = document.querySelector(entryUserVerb);
+    let submit = document.querySelector(btnValidation);
+
+
+    submit.addEventListener("click", 
+        () => {validateEntry(verbs, userVerb, idLabelVbFr, idLabelColumnVbIrr)});
+
+    userVerb.onkeydown = (event) =>  {
+        if (event.key=="Enter" || event=="13") {validateEntry(verbs, userVerb, idLabelVbFr, idLabelColumnVbIrr)};
+    };
+}
+
+
+function validateEntry(verbs, entryUserVerb, idLabelVbFr, idLabelColumnVbIrr) {
+    let value = entryUserVerb.value.trim();
+
+    if (value != "") {
+        entryUserVerb.value = "";
+        comparaisonIsGood(verbs, value, idLabelVbFr, idLabelColumnVbIrr);
+
+    } else {
+        entryUserVerb.setAttribute("style", "border-color: red");
+    }
+    
+}
+
+function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
+    if (form == "Infinitif") {
+        if (verbs[choice][0].trim() == entryValue) {
+            form = columnVbIrr[1]
+            let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
+            labelColumnVbIrr.innerHTML = form;
+
+        } else {
+            alert("You have wrong !!!! :(");
+            form = columnVbIrr[0]
+            let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
+            labelColumnVbIrr.innerHTML = form;
+        }
+    } else if (form == "Prétérit") {
+        if (verbs[choice][1].trim() == entryValue) {       
+            form = columnVbIrr[2]
+            let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
+            labelColumnVbIrr.innerHTML = form;
+
+        } else {
+            alert("You have wrong !!!! :(")
+            form = columnVbIrr[0]
+            let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
+            labelColumnVbIrr.innerHTML = form;
+        }
+        
+    } else {
+        if (verbs[choice][2].trim() == entryValue) {
+            form = columnVbIrr[0]
+            let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
+            labelColumnVbIrr.innerHTML = form;
+
+            currentList = currentList.filter( (verb) => verb != choice );
+            showItems(currentList, idLabelVbFr, idLabelColumnVbIrr);
+
+        } else {
+            alert("You have wrong !!!! :(")
+            form = columnVbIrr[0]
+            let labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
+            labelColumnVbIrr.innerHTML = form;
+        }
+    }
+
+}
+
+
+
+// ========================== LIST 1 ================================
 const verbs1 = {
     "s'éveiller / se réveiller": ["to awake", "awoke", "awoken"],
     "être": ["to be", "was/were", "been"],
@@ -23,7 +151,6 @@ const verbs1 = {
 
 
 // ========================== LIST 2 ================================
-
 const verbs2 = {
     "attraper" : ["to catch", "caught", "caught"],
     "choisir" : ["to choose", "chose", "chosen"],
@@ -52,7 +179,6 @@ const verbs2 = {
 
 
 // ========================== LIST 3 ================================
-
 const verbs3 = {
     "obtenir" : ["to get", "got", "got"],
     "donner" : ["to give", "gave", "given"],
@@ -82,50 +208,20 @@ const verbs3 = {
 
 // ==================================================================
 
+const columnVbIrr= [
+    "Infinitif",
+    "Prétérit",
+    "Past participe",
+]
 
 
-// ========================== MENU ==================================
+let currentList;
+let form;
+let choice;
 
-// méthod trim() to delete the blank space begin and after the word
-
-function showWords(verbs, classDiv, titleTxt, id) {
-
-    let verbsFr = [];
-    for (key in verbs) {verbsFr.push(key.trim())};
-
-
-    let div = document.querySelector(classDiv);
-    let title = document.createElement("h1");
-    title.innerHTML = titleTxt;
-    div.appendChild(title);
-
-    for (let verbFr in verbsFr) {
-        let vbFr = verbsFr[verbFr];
-        
-        let inf = verbs[vbFr][0];
-        let preterit = verbs[vbFr][1];
-        let pastPart = verbs[vbFr][2];
-
-        let formsVb = vbFr+" : "+inf+", "+preterit+", "+pastPart;
-
-        let liVb = document.createElement("li");
-        liVb.innerHTML = formsVb;
-        div.appendChild(liVb);
-    }
-
-    div.addEventListener("click", 
-        () => {
-            SelecList(id)
-        });
-}
-
-function SelecList(selecList) {
-    document.querySelector(".Menu").setAttribute("style", "display:none");
-    document.querySelector(selecList).setAttribute("style", "display:block");
-}
-
-showWords(verbs1, ".verbs1", "List 1", "#list1")
-showWords(verbs2, ".verbs2", "List 2", "#list2")
-showWords(verbs3, ".verbs3", "List 3", "#list3")
+showWords(verbs1, ".verbs1", "List 1", "#list1", "#labelVbFr1", "#ColumnVbIrr1", "#userVerb1", "#submit1");
+showWords(verbs2, ".verbs2", "List 2", "#list2", "#labelVbFr2", "#ColumnVbIrr2", "#userVerb2", "#submit2");
+showWords(verbs3, ".verbs3", "List 3", "#list3", "#labelVbFr3", "#ColumnVbIrr3", "#userVerb3", "#submit3");
 
 // ==================================================================
+
