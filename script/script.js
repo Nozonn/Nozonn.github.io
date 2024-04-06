@@ -81,8 +81,7 @@ function validateEntry(verbs, entryUserVerb, idLabelVbFr, idLabelColumnVbIrr) {
 }
 
 function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
-    entryValue = entryValue.toLowerCase()
-    alert(entryValue)
+    entryValue = entryValue.toLowerCase();
 
     if (form == "Infinitif") {
         if (verbs[choice][0].trim() == entryValue) {
