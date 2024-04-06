@@ -149,4 +149,31 @@ label:not(.ColumnVbIrr)
         font-size: 15px;
         
     }
+
+    .answer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        width: auto;
+    }
+
+    .answer .formEntry {
+        width: auto;
+        padding: auto;
+    }
+
+    .answer .formEntry .submit{
+        margin: auto;
+        padding: auto;
+        margin-left: 90px;
+        margin-bottom: 25px;
+    }
+}
+
+@media all and (max-width: 350px) {
+    .fa-solid {
+        display: none;
+    }
 }
