@@ -10,8 +10,8 @@
 		Training Irregular Verbs
 	</title>
 
-	<link rel="icon" type="image/png" href="Assets/icone.png">
-	<link href="style/style.css" rel="stylesheet" type="text/css"></link>
+	<link rel="icon" type="image/png" href="Assets/iconeAc.png">
+	<link href="Style/style.css" rel="stylesheet" type="text/css"></link>
 	
 	<script src="https://kit.fontawesome.com/9421797cf5.js" crossorigin="anonymous"></script>
 </head>
@@ -25,15 +25,22 @@
 		<div id="verbs" class="verbs1"></div>
 		<div id="verbs" class="verbs2"></div>
 		<div id="verbs" class="verbs3"></div>
+		<div id="verbs" class="verbs4"></div>
+		<div id="verbs" class="verbs5"></div>
 	</div>
 
 	<div class="list" id="list1">
-		<header>
+		<header id="header1">
 			<h1>LIST 1 selected</h1>
-		</header>
+		</header> <hr>
 		
 		<div class="answer">
-			<label for="userVerb1" id="labelVbFr1"></label>
+			<div class="statistique">
+				<div class="score" id="score1"></div>
+				<div class="nbrVb" id="nbrVb1"></div>
+			</div>
+
+			<label for="userVerb1" id="labelVbFr1" class="labelVbFr"></label>
 
 			<div class="formEntry">
 				<i class="fa-solid fa-arrow-right"></i>
@@ -47,9 +54,14 @@
 	</div>
 
 	<div class="list" id="list2">
-		<header><h1>LIST 2 selected</h1></header>
+		<header id="header2"><h1>LIST 2 selected</h1></header> <hr>
 
 		<div class="answer">
+			<div class="statistique">
+				<div class="score" id="score2"></div>
+				<div class="nbrVb" id="nbrVb2"></div>
+			</div>
+
 			<label for="userVerb2" id="labelVbFr2"></label>
 
 			<div class="formEntry">
@@ -65,11 +77,16 @@
 	</div>
 
 	<div class="list" id="list3">
-		<header>
+		<header id="header3">
 			<h1>LIST 3 selected</h1>
-		</header>
+		</header> <hr>
 
 		<div class="answer">
+			<div class="statistique">
+				<div class="score" id="score3"></div>
+				<div class="nbrVb" id="nbrVb3"></div>
+			</div>
+
 			<label for="userVerb3" id="labelVbFr3"></label>
 
 			<div class="formEntry">
@@ -83,9 +100,59 @@
 		</div>
 
 	</div>
+
+	<div class="list" id="list4">
+		<header id="header4">
+			<h1>LIST 4 selected</h1>
+		</header> <hr>
+
+		<div class="answer">
+			<div class="statistique">
+				<div class="score" id="score4"></div>
+				<div class="nbrVb" id="nbrVb4"></div>
+			</div>
+
+			<label for="userVerb4" id="labelVbFr4"></label>
+
+			<div class="formEntry">
+				<i class="fa-solid fa-arrow-right"></i>
+				<input class="userVerb" id="userVerb4" type="text" placeholder="Form of the verb ...">
+				<i class="fa-solid fa-pen"></i>
+				<input type="submit" value="Validate" class="submit" id="submit4">
+			</div>
+
+			<label for="userVerb4" class="ColumnVbIrr" id="ColumnVbIrr4"></label>
+		</div>
+
+	</div>
+
+	<div class="list" id="list5">
+		<header id="header5">
+			<h1>LIST 5 selected</h1>
+		</header> <hr>
+
+		<div class="answer">
+			<div class="statistique">
+				<div class="score" id="score5"></div>
+				<div class="nbrVb" id="nbrVb5"></div>
+			</div>
+
+			<label for="userVerb5" id="labelVbFr5"></label>
+
+			<div class="formEntry">
+				<i class="fa-solid fa-arrow-right"></i>
+				<input class="userVerb" id="userVerb5" type="text" placeholder="Form of the verb ...">
+				<i class="fa-solid fa-pen"></i>
+				<input type="submit" value="Validate" class="submit" id="submit5">
+			</div>
+
+			<label for="userVerb5" class="ColumnVbIrr" id="ColumnVbIrr5"></label>
+		</div>
+
+	</div>
 	
 
-	<script src="script/script.js"></script>
+	<script src="Script/script.js"></script>
 </body>
 
 </html>
