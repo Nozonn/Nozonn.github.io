@@ -14,9 +14,9 @@ function showWords(verbs, classDiv, titleTxt, idListChosen, headerId, idLabelVbF
     for (let verbFr in verbsFr) {
         let vbFr = verbsFr[verbFr];
         
-        let inf = verbs[vbFr][0];
-        let preterit = verbs[vbFr][1];
-        let pastPart = verbs[vbFr][2];
+        let inf = verbs[vbFr][0].trim();
+        let preterit = verbs[vbFr][1].trim();
+        let pastPart = verbs[vbFr][2].trim();
 
         let formsVb = vbFr+" : "+inf+", "+preterit+", "+pastPart;
 
@@ -29,15 +29,16 @@ function showWords(verbs, classDiv, titleTxt, idListChosen, headerId, idLabelVbF
         () => {    
             showPage(verbsFr, idListChosen, headerId)
             showItems(verbsFr, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId);
-            events(verbs, entryUserVerb, btnValidation, idLabelVbFr, idLabelColumnVbIrr)
+            events(verbs, entryUserVerb, btnValidation, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId)
         });
 }
 
 function  showPage(verbsFr, idListChosen, headerId) {
     document.querySelector(".Menu").setAttribute("style", "display:none");
     document.querySelector(idListChosen).setAttribute("style", "display:block");
-
+    
     const goMenu = document.querySelector(headerId);
+    nbrWordTotal = verbsFr.length;
 
     goMenu.addEventListener("click", 
         () => {
@@ -45,7 +46,6 @@ function  showPage(verbsFr, idListChosen, headerId) {
             document.querySelector(".Menu").setAttribute("style", "display:block");
         });
 
-    nbrWordTotal = verbsFr.length
 }
 
 function showItems(listVbFr, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId) {
@@ -57,15 +57,16 @@ function showItems(listVbFr, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsI
     currentList = listVbFr;
     form = columnVbIrr[0];
     let vbLeft = currentList.length;
-    let score = nbrWordTotal - vbLeft - wrongAnswer.length
+    let nbrVbLeft = nbrWordTotal - vbLeft + 1;
+    let score = nbrWordTotal - vbLeft - wrongAnswer.length;
     
 
     if (currentList.length != 0) {
         let idx = Math.floor(Math.random() * currentList.length);
         choice = currentList[idx];
 
-        nbrVb.innerHTML = nbrWordTotal - vbLeft + 1 + " / " + nbrWordTotal
-        labelScore.innerHTML = "Score : " + score + " / " + nbrWordTotal
+        nbrVb.innerHTML = nbrVbLeft + " / " + nbrWordTotal;
+        labelScore.innerHTML = "Score : " + score + " / " + nbrWordTotal;
 
         labelVbFr.innerHTML = choice; 
         labelColumn.innerHTML = form;
@@ -84,27 +85,27 @@ function showItems(listVbFr, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsI
     
 }
 
-function events(verbs, entryUserVerb, btnValidation, idLabelVbFr, idLabelColumnVbIrr) {
+function events(verbs, entryUserVerb, btnValidation, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId) {
     // Events
     const userVerb = document.querySelector(entryUserVerb);
     const submit = document.querySelector(btnValidation);
     
 
     submit.addEventListener("click", 
-        () => {validateEntry(verbs, userVerb, idLabelVbFr, idLabelColumnVbIrr)});
+        () => {validateEntry(verbs, userVerb, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId)});
 
     userVerb.onkeydown = (event) =>  {
-        if (event.key=="Enter" || event=="13") {validateEntry(verbs, userVerb, idLabelVbFr, idLabelColumnVbIrr)};
+        if (event.key=="Enter" || event=="13") {validateEntry(verbs, userVerb, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId)};
     };
 }
 
 
-function validateEntry(verbs, entryUserVerb, idLabelVbFr, idLabelColumnVbIrr) {
+function validateEntry(verbs, entryUserVerb, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId) {
     let value = entryUserVerb.value.trim();
 
     if (value != "") {
         entryUserVerb.value = "";
-        comparaisonIsGood(verbs, value, idLabelVbFr, idLabelColumnVbIrr);
+        comparaisonIsGood(verbs, value, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId);
 
     } else {
         entryUserVerb.setAttribute("style", "border-color: red");
@@ -113,7 +114,7 @@ function validateEntry(verbs, entryUserVerb, idLabelVbFr, idLabelColumnVbIrr) {
 }
 
 
-function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
+function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId) {
     entryValue = entryValue.toLowerCase();
     const labelColumnVbIrr = document.querySelector(idLabelColumnVbIrr);
 
@@ -142,7 +143,7 @@ function comparaisonIsGood(verbs, entryValue, idLabelVbFr, idLabelColumnVbIrr) {
     
                 currentList = currentList.filter( (verb) => verb != choice );
                 wrongAnswer = [...new Set(wrongAnswer)];
-                showItems(currentList, idLabelVbFr, idLabelColumnVbIrr);
+                showItems(currentList, idLabelVbFr, idLabelColumnVbIrr, scoreId, nbrVerbsId);
                 return
             } else {
                 alert("You have wrong !!!! :(");
